@@ -7,4 +7,4 @@
 include_recipe "apt::default"
 include_recipe "apache2::default"
 include_recipe "apache2::mod_mpm_prefork"
-#include_recipe "apache2::mod_wsgi"
+include_recipe "apache2::mod_wsgi"
