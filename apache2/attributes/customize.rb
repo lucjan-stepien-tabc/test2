@@ -21,5 +21,5 @@
 # normal[:apache][:prefork][:maxrequestsperchild]
 # normal[:apache][:prefork][:maxconnectionsperchild]
 normal[:apache][:contact] = 'lucjan.stepien@test.com'
-normal[:apache][:user]    = 'tix-wsgi'
-normal[:apache][:group]   = 'tix-wsgi'
+# normal[:apache][:user]    = 'tix-wsgi'
+# normal[:apache][:group]   = 'tix-wsgi'
