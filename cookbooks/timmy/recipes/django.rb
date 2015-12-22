@@ -26,9 +26,14 @@ node[:deploy].each do |application, deploy|
     shell '/bin/false'
   end
   python_virtualenv "#{node[:deploy][:tix][:deploy_to]}/current/virtualenv" do
-    owner 'tix-wsgi'
-    group 'ubuntu'
+    owner 'deploy'
+    group 'www-data'
     action :create
+  end
+  packages ['libmysqlclient-dev']
+
+  execute "install dependencies" do
+    command "#{node[:deploy][:tix][:deploy_to]}/current/virtualenv/bin/pip install -r #{node[:deploy][:tix][:deploy_to]}/current/tix/environment/dependencies_from_internet.txt"
   end
 
 end
