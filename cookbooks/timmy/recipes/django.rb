@@ -19,9 +19,15 @@ node[:deploy].each do |application, deploy|
     app application
   end
   
+  user 'tix-wsgi' do
+    comment 'WSGI Deamon user for httpd'
+    system true
+    home '/tix-def/tix-wsgi'
+    shell '/bin/false'
+  end
   python_virtualenv "#{node[:deploy][:tix][:deploy_to]}/current" do
-    owner node[:opsworks][:deploy_user][:user]
-    group node[:opsworks][:deploy_user][:group]
+    owner 'tix-wsgi'
+    group 'ubuntu'
     action :create
   end
 
