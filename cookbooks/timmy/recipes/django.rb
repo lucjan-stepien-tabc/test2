@@ -1,5 +1,5 @@
 include_recipe "deploy"
-# include_recipe "python"
+include_recipe "python"
 
 node[:deploy].each do |application, deploy|
 
