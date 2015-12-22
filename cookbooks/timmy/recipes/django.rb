@@ -25,7 +25,7 @@ node[:deploy].each do |application, deploy|
     home '/tix-def/tix-wsgi'
     shell '/bin/false'
   end
-  python_virtualenv "#{node[:deploy][:tix][:deploy_to]}/current" do
+  python_virtualenv "#{node[:deploy][:tix][:deploy_to]}/current/virtualenv" do
     owner 'tix-wsgi'
     group 'ubuntu'
     action :create
