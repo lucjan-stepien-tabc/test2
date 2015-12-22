@@ -1,4 +1,5 @@
 include_recipe "deploy"
+# include_recipe "poise-python"
 
 node[:deploy].each do |application, deploy|
 
@@ -17,4 +18,6 @@ node[:deploy].each do |application, deploy|
     deploy_data deploy
     app application
   end
+ 
+
 end

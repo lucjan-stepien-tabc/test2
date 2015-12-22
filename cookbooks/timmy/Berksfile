@@ -1,5 +1,6 @@
 source 'https://supermarket.chef.io'
 "apt"
+"python"
 metadata
 
 def opsworks_cookbook(name)
