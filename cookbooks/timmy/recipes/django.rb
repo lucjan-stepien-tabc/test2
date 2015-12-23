@@ -34,7 +34,7 @@ node[:deploy].each do |application, deploy|
   
   execute "personel_git_token" do
     command "perl -pi -e 's/\+ssh:\/\/git\@github.com/\+https:\/\/#{node[:deploy][:tix][:environment_variables][:git_personal_access_token]}\@github.com/' #{node[:deploy][:tix][:deploy_to]}/current/tix/environment/dependencies_from_internet.txt"
-    not_if "grep #{node[:deploy][:tix][:environment_variables][:git_personal_access_token]} {node[:deploy][:tix][:deploy_to]}/current/tix/environment/dependencies_from_internet.txt"
+    not_if "grep #{node[:deploy][:tix][:environment_variables][:git_personal_access_token]} #{node[:deploy][:tix][:deploy_to]}/current/tix/environment/dependencies_from_internet.txt"
   end
 
   execute "install dependencies" do
