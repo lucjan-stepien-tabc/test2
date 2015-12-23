@@ -1,2 +1,2 @@
 normal[:deploy][:tix][:deploy_to] = '/tix-deff'
-normal[:deploy][:tix][:keep_releases] = 3
+normal[:deploy][:tix][:keep_releases] = 2
