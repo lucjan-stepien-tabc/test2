@@ -7,7 +7,7 @@ node[:deploy].each do |application, deploy|
     Chef::Log.debug("Skipping deploy::django application #{application} as it is not a Django app")
     next
   end
-  Chef::Log.info("personal_access: #{node[:deploy]['tix'][:environment_variables][:git_personal_access_token]}")
+  Chef::Log.info("personal_access: #{node[:deploy][:tix][:environment_variables][:git_personal_access_token]}")
   opsworks_deploy_dir do
     user deploy[:user]
     group deploy[:group]
@@ -30,7 +30,7 @@ node[:deploy].each do |application, deploy|
     group 'www-data'
     action :create
   end
-  packages ['libmysqlclient-dev']
+  package ['libmysqlclient-dev']
 
   # execute "install dependencies" do
   #   command "#{node[:deploy][:tix][:deploy_to]}/current/virtualenv/bin/pip install -r #{node[:deploy][:tix][:deploy_to]}/current/tix/environment/dependencies_from_internet.txt"
