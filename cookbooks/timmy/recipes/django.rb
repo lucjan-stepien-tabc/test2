@@ -30,7 +30,9 @@ node[:deploy].each do |application, deploy|
     group 'www-data'
     action :create
   end
-  package ['libmysqlclient-dev', 'cmake', 'libffi-dev']
+  #install packages required by github dependencies
+  ['libmysqlclient-dev', 'cmake', 'libffi-dev'].each {|pckg| package pckg}
+
   
   execute "personel_git_token" do
     command "perl -pi -e 's/\\+ssh:\\/\\/git\\@github.com/\\+https:\\/\\/#{node[:deploy][:tix][:environment_variables][:git_personal_access_token]}\\@github.com/' #{node[:deploy][:tix][:deploy_to]}/current/tix/environment/dependencies_from_internet.txt"
