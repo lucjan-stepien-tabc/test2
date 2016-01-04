@@ -41,6 +41,7 @@ node[:deploy].each do |application, deploy|
   end
 
   execute "install_github_dependencies" do
+    user 'deploy'
     environment(
       'PATH' => "#{node[:deploy][:tix][:deploy_to]}/current/virtualenv/bin:#{ENV['PATH']}", 
       'VIRTUAL_ENV ' => "#{node[:deploy][:tix][:deploy_to]}/current/virtualenv" 
