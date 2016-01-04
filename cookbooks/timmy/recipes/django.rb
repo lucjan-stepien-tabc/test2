@@ -41,10 +41,11 @@ node[:deploy].each do |application, deploy|
   end
 
   execute "install_github_dependencies" do
-    user 'deploy'
+    user deploy[:user]
     environment(
       'PATH' => "#{node[:deploy][:tix][:deploy_to]}/current/virtualenv/bin:#{ENV['PATH']}", 
-      'VIRTUAL_ENV ' => "#{node[:deploy][:tix][:deploy_to]}/current/virtualenv" 
+      'VIRTUAL_ENV ' => "#{node[:deploy][:tix][:deploy_to]}/current/virtualenv",
+      'HOME' => "/home/#{deploy[:user]}"
       )
     command "#{node[:deploy][:tix][:deploy_to]}/current/virtualenv/bin/pip install --exists-action=w -r #{node[:deploy][:tix][:deploy_to]}/current/tix/environment/dependencies_from_github.txt"
   end
