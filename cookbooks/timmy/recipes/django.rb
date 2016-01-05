@@ -12,6 +12,7 @@ node[:deploy].each do |application, deploy|
   Chef::Log.info("database_username: #{node[:deploy][:tix][:database][:username]}")
   Chef::Log.info("database_database: #{node[:deploy][:tix][:database][:database]}")
   Chef::Log.info("deploy_user: #{deploy[:user]}")
+  Chef::Log.info("deploy_user: #{node[:opsworks][:deploy_user][:user]}")
   
   opsworks_deploy_dir do
     user deploy[:user]
