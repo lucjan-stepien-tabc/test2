@@ -7,7 +7,7 @@ execute "personel_git_token" do
 end
 
 execute "install github dependencies" do
-  user deploy[:user]
+  user node[:opsworks][:deploy_user][:user]
   environment(
     'PATH' => "#{node[:deploy][:tix][:deploy_to]}/current/virtualenv/bin:#{ENV['PATH']}", 
     'VIRTUAL_ENV ' => "#{node[:deploy][:tix][:deploy_to]}/current/virtualenv",
