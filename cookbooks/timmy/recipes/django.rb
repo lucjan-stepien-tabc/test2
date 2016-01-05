@@ -40,7 +40,7 @@ node[:deploy].each do |application, deploy|
     not_if "grep #{node[:deploy][:tix][:environment_variables][:git_personal_access_token]} #{node[:deploy][:tix][:deploy_to]}/current/tix/environment/dependencies_from_github.txt"
   end
 
-  execute "install_github_dependencies" do
+  execute "install github dependencies" do
     user deploy[:user]
     environment(
       'PATH' => "#{node[:deploy][:tix][:deploy_to]}/current/virtualenv/bin:#{ENV['PATH']}", 
@@ -50,4 +50,7 @@ node[:deploy].each do |application, deploy|
     command "#{node[:deploy][:tix][:deploy_to]}/current/virtualenv/bin/pip install --exists-action=w -r #{node[:deploy][:tix][:deploy_to]}/current/tix/environment/dependencies_from_github.txt"
   end
 
+  Chef::Log.info("database_host: #{node[:deploy][:database][:host]}")
+  Chef::Log.info("database_username: #{node[:deploy][:database][:username]}")
+  Chef::Log.info("database_database: #{node[:deploy][:database][:database]}")
 end
