@@ -36,8 +36,6 @@ node[:deploy].each do |application, deploy|
     group 'www-data'
     action :create
   end
-  # include_recipe "timmy::dep_from_github"
-  # include_recipe "timmy::dbmigrations"
-
-
+  include_recipe "timmy::dep_from_github"
+  include_recipe "timmy::dbmigrations"
 end
