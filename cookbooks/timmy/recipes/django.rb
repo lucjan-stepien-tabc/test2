@@ -32,10 +32,10 @@ node[:deploy].each do |application, deploy|
     shell '/bin/false'
   end
   python_virtualenv "#{node[:deploy][:tix][:deploy_to]}/current/virtualenv" do
-    owner 'deploy'
-    group 'www-data'
+    owner node[:opsworks][:deploy_user][:user]
+    group node[:opsworks][:deploy_user][:group]
     action :create
   end
-  include_recipe "timmy::dep_from_github"
-  include_recipe "timmy::dbmigrations"
 end
+include_recipe "timmy::dep_from_github"
+include_recipe "timmy::dbmigrations"

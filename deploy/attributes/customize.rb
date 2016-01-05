@@ -1,7 +1,8 @@
 normal[:deploy][:tix][:deploy_to] = '/tix'
 normal[:deploy][:tix][:keep_releases] = 2
-normal[:opsworks][:deploy_user][:shell] = '/bin/bash'
+# normal[:opsworks][:deploy_user][:shell] = '/bin/bash'
 normal[:opsworks][:deploy_user][:user] = 'deploy'
+normal[:opsworks][:deploy_user][:group] = 'deploy'
 
 # The deploy provider used. Set to one of
 # - "Branch"      - enables deploy_branch (Chef::Provider::Deploy::Branch)
@@ -24,5 +25,3 @@ node[:deploy].each do |application, deploy|
     "HOME" => node[:deploy][application][:home]
   }
 end
-
- 
