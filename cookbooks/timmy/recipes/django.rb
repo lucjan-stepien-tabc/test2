@@ -8,7 +8,7 @@ node[:deploy].each do |application, deploy|
     next
   end
   Chef::Log.info("personal_access: #{node[:deploy][:tix][:environment_variables][:git_personal_access_token]}")
-  Chef::Log.info("database_host: #{node[:deploy][:database][:host]}")
+  Chef::Log.info("database_host: #{node[:deploy][:tix][:database][:host]}")
   Chef::Log.info("database_username: #{node[:deploy][:tix][:database][:username]}")
   Chef::Log.info("database_database: #{node[:deploy][:tix][:database][:database]}")
   
