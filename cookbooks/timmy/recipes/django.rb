@@ -32,11 +32,16 @@ node[:deploy].each do |application, deploy|
     home '/tix-def/tix-wsgi'
     shell '/bin/false'
   end
-  python_virtualenv "#{node[:deploy][:tix][:deploy_to]}/current/virtualenv" do
+  python_virtualenv "#{node[:deploy][:tix][:deploy_to]}/current" do
     owner node[:opsworks][:deploy_user][:user]
     group node[:opsworks][:deploy_user][:group]
     action :create
   end
+  execute "migrate tix_database" do
+    command "#{node[:deploy][:tix][:deploy_to]}/current/virtualenv/bin/python #{node[:deploy][:tix][:deploy_to]}/current/tix/manage.py migrate"
+    environment(node[:deploy][:tix][:environment])
+  end
+
 end
 include_recipe "timmy::dep_from_github"
-include_recipe "timmy::dbmigrations"
+# include_recipe "timmy::dbmigrations"
