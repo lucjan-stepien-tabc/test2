@@ -45,10 +45,10 @@ node[:deploy].each do |application, deploy|
   end
   
   # tix.pth 
-  tix_pth = "#{node[:deploy][:tix][:deploy_to]}/current/virtualenv}/lib/python2.7/site-packages/tix.pth"
+  tix_pth = "#{python_virtualenv_path}/lib/python2.7/site-packages/tix.pth"
   
   file tix_pth do
-    content '/tix/current/tix'
+    content '/tix/current'
     mode '0664'
     owner node[:opsworks][:deploy_user][:user]
     group node[:opsworks][:deploy_user][:group]
@@ -58,7 +58,7 @@ node[:deploy].each do |application, deploy|
   directory '/tix/current/logs' do
     owner node[:opsworks][:deploy_user][:user]
     group node[:opsworks][:deploy_user][:group]
-    mode '0664'
+    mode '0755'
   end
 
 end
