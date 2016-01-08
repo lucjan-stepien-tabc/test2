@@ -43,14 +43,23 @@ node[:deploy].each do |application, deploy|
     group node[:opsworks][:deploy_user][:group]
     action :create
   end
-  tix_pth = "#{node[:deploy][:tix][:deploy_to]}/current/virtualenv}"
   
-  # file "#{}" do
-  #   content '<html>This is a placeholder for the home page.</html>'
-  #   mode '0755'
-  #   owner 'web_admin'
-  #   group 'web_admin'
-  # end
+  # tix.pth 
+  tix_pth = "#{node[:deploy][:tix][:deploy_to]}/current/virtualenv}/lib/python2.7/site-packages/tix.pth"
+  
+  file tix_pth do
+    content '/tix/current/tix'
+    mode '0664'
+    owner node[:opsworks][:deploy_user][:user]
+    group node[:opsworks][:deploy_user][:group]
+  end
+  
+  #log directory
+  directory '/tix/current/logs' do
+    owner node[:opsworks][:deploy_user][:user]
+    group node[:opsworks][:deploy_user][:group]
+    mode '0664'
+  end
 
 end
  include_recipe "timmy::dep_from_github"
